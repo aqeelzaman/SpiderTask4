@@ -1,0 +1,33 @@
+n=int(input(""))
+l=input("")
+l=[str(x) for x in l]
+
+def give(n,l):
+    c=[1 for x in range(n)]
+    for i in range(n-1):
+        if l[i]=='L':
+            if i<(n-2) and l[i+1]=='=' and c[i]<=c[i+1]:
+                c[i]=c[i]+2
+            elif c[i]<=c[i+1]:
+                c[i]=c[i]+1
+        elif l[i]=='R':
+            c[i+1]=c[i]+1
+        while l[i]=='=':
+            if i==n-2:
+                c[i+1]=c[i]
+            elif i<(n-1) and l[i+1]=='L':
+                c[i+1]=c[i+2]+1
+                c[i]=c[i+2]+1
+            elif i<(n-1) and l[i+1]=='R':
+                c[i+1]=c[i]
+            else:
+                c[i+1]=c[i]
+            i=i-1
+    print(c)
+    
+
+if len(l)==(n-1):
+    give(n,l)
+else:
+    print("Error")
+    
