@@ -1,0 +1,26 @@
+d=input("")
+d=d.split()
+n=int(d[0])
+k=int(d[1])
+
+def lcs(i,j,x,y): 
+    if x==0 or y==0: 
+        return 0 
+    elif i[x-1]==j[y-1]:
+        return 1+lcs(i,j,x-1,y-1) 
+    else: 
+        return max(lcs(i,j,x,y-1),lcs(i,j,x-1,y))
+ans=None
+i=input("")
+i=[int(x) for x in i.split()]
+for trial in range(k-1):
+    j=input("")
+    j=[int(x) for x in j.split()]
+    if len(i)==len(j)==n:
+        ans=lcs(i,j,len(i),len(j))
+        i=j
+    else:
+        print("Error")
+        break
+    
+print(ans) 
